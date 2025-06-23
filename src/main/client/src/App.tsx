@@ -1,12 +1,16 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Env } from './Env'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  useEffect(() => {
+    fetch(`${Env.API_BASE_URL}/ping`)
+      .then(response => response.text())
+      .then(body => console.log(body));
+  }, []);
   return (
     <>
       <div>
@@ -19,7 +23,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
 
-      <Link to='/cake'>Visit /cake</Link>
+      <Link to='/cow'>Visit /cake</Link>
     </>
   )
 }

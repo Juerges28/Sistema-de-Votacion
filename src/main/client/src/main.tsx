@@ -10,10 +10,14 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/cake',
-    element: <div style={{ fontSize: 150 }}>🍰</div>,
+    path: '/cow',
+    element: <div style={{ fontSize: 150 }}>🐮</div>,
   },
-])
+  ],
+  {
+    basename: '/dashboard',
+  },
+)
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
