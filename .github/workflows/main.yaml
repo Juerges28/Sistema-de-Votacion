@@ -28,9 +28,11 @@ jobs:
           cache: 'maven'
 
       - name: 'Permisos :: Dar ejecución al mvnw'
+        working-directory: backend
         run: chmod +x mvnw
 
       - name: 'Application :: Build (Backend)'
+        working-directory: backend
         run: ./mvnw package -DskipTests
 
       # -- Frontend steps --
