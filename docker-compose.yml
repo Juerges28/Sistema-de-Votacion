@@ -1,15 +1,17 @@
 services:
   db:
-    image: postgres:16
-    restart: always
+    image: postgres:17
+    container_name: db
     environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
       POSTGRES_DB: votaciones
-      POSTGRES_USER: usuario
-      POSTGRES_PASSWORD: clave
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   backend:
     build: ./backend
@@ -19,8 +21,8 @@ services:
       - db
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/votaciones
-      SPRING_DATASOURCE_USERNAME: usuario
-      SPRING_DATASOURCE_PASSWORD: clave
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: admin123
     networks:
       - app-network
 

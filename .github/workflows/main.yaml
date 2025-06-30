@@ -27,6 +27,13 @@ jobs:
           java-version: ${{ env.JAVA_MAJOR_VERSION }}
           cache: 'maven'
 
+      - name: 'Permisos :: Dar ejecución al mvnw'
+        run: chmod +x mvnw
+
+      - name: 'Application :: Build (Backend)'
+        run: ./mvnw package -DskipTests
+
+      # -- Frontend steps --
       - name: 'Setup :: Node'
         uses: actions/setup-node@v3
         with:
@@ -34,8 +41,10 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'frontend/package-lock.json'
 
-      - name: 'Permisos :: Dar ejecución al mvnw'
-        run: chmod +x mvnw
+      - name: 'Frontend :: Install Dependencies'
+        working-directory: frontend
+        run: npm ci
 
-      - name: 'Application :: Build'
-        run: ./mvnw package -DskipTests
+      - name: 'Frontend :: Build'
+        working-directory: frontend
+        run: npm run build

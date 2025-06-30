@@ -1,30 +1,33 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
-import { Env } from './Env'
+import React, { useEffect, useState } from 'react'
+import LoginButton from './components/LoginButton'
+import { useNavigate } from 'react-router-dom'
 
-function App() {
+const App: React.FC = () => {
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null)
+  const navigate = useNavigate()
+
   useEffect(() => {
-    fetch(`${Env.API_BASE_URL}/ping`)
-      .then(response => response.text())
-      .then(body => console.log(body));
-  }, []);
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    fetch('http://localhost:8080/api/user', {
+      credentials: 'include'
+    })
+      .then(res => {
+        if (res.status === 200) {
+          setAuthenticated(true)
+          navigate('/dashboard')
+        } else {
+          setAuthenticated(false)
+        }
+      })
+      .catch(() => setAuthenticated(false))
+  }, [])
 
-      <Link to='/cow'>Visit /cake</Link>
-    </>
+  if (authenticated === null) return <p>Cargando...</p>
+
+  return (
+    <div>
+      <h1>Bienvenido al sistema de votación</h1>
+      <LoginButton />
+    </div>
   )
 }
 

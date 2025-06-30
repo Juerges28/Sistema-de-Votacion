@@ -18,7 +18,7 @@ public class SpringConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        this.serveDirectory(registry, "/dashboard", "classpath:/dashboard/");
+        this.serveDirectory(registry, "/", "classpath:/static/");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
