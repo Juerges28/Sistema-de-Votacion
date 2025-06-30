@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_MAJOR_VERSION }}
           cache: 'npm'
-          cache-dependency-path: 'src/main/client/package-lock.json'
+          cache-dependency-path: 'frontend/package-lock.json'
 
       - name: 'Permisos :: Dar ejecución al mvnw'
         run: chmod +x mvnw
