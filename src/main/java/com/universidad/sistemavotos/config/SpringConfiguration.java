@@ -3,17 +3,8 @@ package com.universidad.sistemavotos.config;
 import java.util.List;
 import static java.util.Objects.nonNull;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,52 +12,9 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.resource.ResourceResolverChain;
 
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.SneakyThrows;
 
 @Configuration
 public class SpringConfiguration implements WebMvcConfigurer {
-
-    public static final PasswordEncoder BCRYPT = new BCryptPasswordEncoder();
-
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        //
-        // 1️⃣: First bean
-        //
-        UserDetails user = User.builder()
-            .username("vaca")
-            .password(BCRYPT.encode("vaca12"))
-            .build();
-        return new InMemoryUserDetailsManager(user);
-    }
- 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        //
-        // 2️⃣: Second bean
-        //
-        return BCRYPT;
-    }
- 
-    @Bean
-    @SneakyThrows
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
-        //
-        // 3️⃣: Third bean
-        //
-        return httpSecurity
-                .httpBasic(config -> {})
-                .csrf(config -> config.disable())
-                .authorizeHttpRequests(config -> {
-                    config
-                        .requestMatchers("/api/ping").permitAll()
-                        .anyRequest().authenticated();
-                })
-                .sessionManagement(config -> {
-                    config.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                })
-                .build();
-    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
