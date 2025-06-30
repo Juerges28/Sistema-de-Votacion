@@ -34,5 +34,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'src/main/client/package-lock.json'
 
+      - name: 'Permisos :: Dar ejecución al mvnw'
+        run: chmod +x mvnw
+
       - name: 'Application :: Build'
         run: ./mvnw package -DskipTests
