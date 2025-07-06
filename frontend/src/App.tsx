@@ -1,3 +1,4 @@
+/*
 import React, { useEffect, useState } from 'react'
 import LoginButton from './components/LoginButton'
 import { useNavigate } from 'react-router-dom'
@@ -32,3 +33,16 @@ const App: React.FC = () => {
 }
 
 export default App
+*/
+
+
+import React from 'react'
+import Login from './components/Login'
+import './App.css' 
+
+const App: React.FC = () => {
+  return <Login/>
+}
+
+export default App
+
