@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #F9F9F9;
+}
+.header {
+  background-color: #007BFF;
+  color: white;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+.container {
+  padding: 1rem;
+}
+.upload-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-top: 1rem;
+}
+button.confirm-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+button.confirm-button:hover {
+  background-color: #218838;
+}
+input.custom-file {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+th, td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: center;
+}
+th {
+  background-color: #f1f1f1;
+}

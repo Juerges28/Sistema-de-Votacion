@@ -1,0 +1,10 @@
+react-excel-app/node_modules/
+react-excel-app/.vite/
+react-excel-app/dist/
+react-excel-app/.env.local
+react-excel-app/public/tmp/
+react-excel-app/public/tmp/**
+
+backend-java/target/
+*.class
+*.log
